@@ -1,0 +1,81 @@
+architektura_aplikacji_roborock:
+  ekran_glowny:
+    powiadomienia_globalne:
+      - logi_historii_urzadzenia # Historia powiadomień urządzenia
+      - wiadomosci_udostepniania # Powiadomienia o aktywności innych użytkowników
+    zarzadzanie_urzadzeniami:
+      - skaner_qr_dodawanie_urzadzenia # Skanowanie kodu QR pod panelem
+      - przelacznik_widoku_listy_urzadzen # Przełącznik: widok listy vs obrazek urządzenia
+    szybki_dostep:
+      - skroty_procedur # Skróty do zaprogramowanych procedur (rutyn)
+      - wejscie_do_podgladu_zdalnego # Szybki dostęp do kamery (dla wybranych modeli)
+
+  ustawienia_profilu:
+    zarzadzanie_kontem:
+      udostepnianie_urzadzenia:
+        wejscie: identyfikator_konta (telefon/email)
+        akcja: nadaj_uprawnienia_kontroli
+      integracje_zewnetrzne: [Mqtt]
+    preferencje_aplikacji:
+      motyw: [jasny, ciemny, domyslny_systemowy]
+      wybor_jezyka: string
+      uprawnienia_wiadomosci:
+        - przelacznik_powiadomien_push: boolean
+        - przelacznik_reklam_marketingowych: boolean # "Zezwól na aktualizacje produktów i usług"
+    narzedzia_systemowe:
+      menedzer_oprogramowania_ukladowego:
+        - przelacznik_automatycznej_aktualizacji: boolean
+        - przycisk_recznego_sprawdzania: akcja
+      menedzer_sieci: konfiguracja_wifi_2.4ghz
+
+  glowny_panel_sterowania:
+    wizualizator_mapy: mapa
+      przelaczniki_warstw: [nazwy_pomieszczen, rodzaje_podlog, meble, przeszkody]
+    tryby_sprzatania:
+      - pelne_sprzatanie: cala_mapa
+      - sprzatanie_pokoju: wybrane_pokoje
+      - sprzatanie_strefy: niestandardowy_prostokat_z_mozliwoscia_zmiany_rozmiaru
+    sterowanie_w_czasie_rzeczywistym:
+      - przelacznik_start_pauza: akcja
+      - przycisk_powrotu_do_stacji: akcja
+      - dynamiczne_dodawanie_obszaru_pominiecia: # Dostępne w trakcie pracy
+          dodaj_strefe: akcja
+          pomin_obecny_pokoj: akcja
+
+  ustawienia_zaawansowane_urzadzenia:
+    logika_sprzatania:
+      suwak_mocy_ssania: [cichy, zrownowazony, turbo, max]
+      suwak_przeplywu_wody: [niski, sredni, wysoki]
+      strategia_dotyczaca_dywanow: [podnies_mopa, unikaj, ignoruj]
+      przelacznik_ruchomych_ramion: boolean # Wysuwane ramiona szczotek (np. FlexiArm)
+    silnik_harmonogramow:
+      - czas_rozpoczecia: znacznik_czasu
+      - czestotliwosc: [codziennie, dni_robocze, niestandardowe]
+      - ustawienia_sprzatania: [tryb, moc, woda]
+    monitor_konserwacji: # Wskaźniki zużycia w %
+      - zywotnosc_szczotki_glownej: procent
+      - zywotnosc_szczotki_bocznej: procent
+      - zywotnosc_filtra: procent
+      - przypomnienie_o_czyszczeniu_czujnikow: procent
+    konfiguracja_stacji_dokujacej:
+      - czestotliwosc_mycia_mopa: wybor
+      - sila_automatycznego_oprozniania: wybor
+      - czas_trwania_suszenia: suwak_godziny
+    bezpieczeństwo_i_wygoda:
+      - przelacznik_blokady_dzieciecej: boolean
+      - tryb_nie_przeszkadzac: zakres_czasowy
+      - mapowanie_offline: boolean # Pomaga znaleźć zgubionego robota (ostatnia lokalizacja)
+
+  edytor_mapy:
+    narzedzia_geometryczne:
+      strefy_no_go:
+        - wirtualna_sciana: rysowanie_linii
+        - obszar_zablokowany: skalowanie_czerwonego_prostokata
+      topologia_pomieszczen: [polacz, podziel, zmien_nazwe, usun]
+    obiekty_otoczenia:
+      edytor_mebli:
+        - lista: [lozko, sofa, stol, itp]
+        - akcje: [obroc, zmien_rozmiar, umiesc]
+      edytor_nawierzchni:
+        - wybor_typu_podlogi: [plytki, drewno, dywan]
+        - asystent_pokonywania_progow: akcja # Pomaga robotowi "wziąć rozbieg" przed progiem
